@@ -1,0 +1,4 @@
+streamlit==1.33.0
+streamlit-webrtc==0.47.6
+ultralytics==8.1.45
+av==11.0.0
