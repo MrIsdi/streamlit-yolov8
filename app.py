@@ -19,7 +19,12 @@ def generate_label_colors():
 
 COLORS = generate_label_colors()
 
-net = cv2.dnn.readNetFromONNX("best.onnx")
+cache_key = "yolov8"
+if cache_key in st.session_state:
+    net = st.session_state[cache_key]
+else:
+    net = cv2.dnn.readNetFromONNX("best.onnx")
+    st.session_state[cache_key] = net
 
 score_threshold = st.slider("Score threshold", 0.0, 1.0, 0.5, 0.05)
 conf_threshold = st.slider("Confidence threshold", 0.0, 1.0, 0.5, 0.05)
