@@ -6,7 +6,12 @@ from ultralytics import YOLO
 
 logger = logging.getLogger(__name__)
 
-model = YOLO("yolov8n.pt")
+cache_key = "object_detection_dnn"
+if cache_key in st.session_state:
+    model = st.session_state[cache_key]
+else:
+    model = YOLO("https://github.com/Mrisdi/streamlit-yolov8/raw/master/yolov8n.pt")
+    st.session_state[cache_key] = model
 
 def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
     image = frame.to_ndarray(format="bgr24")
