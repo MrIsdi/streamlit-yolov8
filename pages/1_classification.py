@@ -10,7 +10,7 @@ cache_key = "yolov8-cls"
 if cache_key in st.session_state:
     net = st.session_state[cache_key]
 else:
-    net = YOLO("../model/yolov8n-cls.pt")
+    net = YOLO("yolov8n-cls.pt")
     st.session_state[cache_key] = net
 
 st.title("Realtime Classification YOLOv8")
